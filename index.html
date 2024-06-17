@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机一言异常</title>
+    <title>随机一言PC</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -52,6 +52,10 @@
             background-color: #F05626;
             color: white;
         }
+        #deleteDataButton {
+            background-color: #778899;
+            color: white;
+        }
         #search-history {
             margin-top: 20px;
         }
@@ -89,6 +93,7 @@
     </div>
     <button id="start-button">开始</button>
     <button id="stop-button">停止</button>
+    <button id="deleteDataButton">清空计数</button>
     <h2>搜索历史</h2>
     <div id="search-history"></div>
 </main>
@@ -275,7 +280,7 @@
 
     function initializeCountdown() {
         const countdownElement = document.getElementById('countdown-timer');
-        let initialCountdown = Math.floor(Math.random() * 121) + 840; // 随机生成14-16分钟的倒计时
+        let initialCountdown = Math.floor(Math.random() * 121) + 840; // 随机生成 15 分的倒计时
         countdownElement.textContent = initialCountdown;
 
         countdownWorker = new Worker(URL.createObjectURL(new Blob([`
@@ -313,6 +318,12 @@
             }
         };
     }
+
+document.getElementById("deleteDataButton").addEventListener("click", function() {
+    localStorage.removeItem("totalSearches");
+    document.getElementById('total-searches').textContent = '0';
+    document.getElementById('completed-searches').textContent = '0';
+});
 
     document.getElementById('start-button').addEventListener('click', startAutoSearch);
     document.getElementById('stop-button').addEventListener('click', stopAutoSearch);
