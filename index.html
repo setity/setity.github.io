@@ -323,6 +323,9 @@ document.getElementById("deleteDataButton").addEventListener("click", function()
     localStorage.removeItem("totalSearches");
     document.getElementById('total-searches').textContent = '0';
     document.getElementById('completed-searches').textContent = '0';
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000); 
 });
 
     document.getElementById('start-button').addEventListener('click', startAutoSearch);
