@@ -3,85 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机一言异常</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #444;
-            margin: 0;
-            padding: 0;
+    <title>随机一言 异常</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Screen Wake Lock is active');
+    
+            // 在页面卸载时释放锁定
+            window.addEventListener('beforeunload', () => {
+                wakeLock.release();
+                console.log('Screen Wake Lock released');
+            });
+        } catch (err) {
+            console.error('Wake Lock is not supported or not granted:', err);
         }
-        main {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .search-info {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fafafa;
-        }
-        .search-info div {
-            margin-bottom: 10px;
-        }
-        .search-info div span {
-            font-weight: bold;
-        }
-        button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #start-button {
-            background-color: #FFA500;
-            color: white;
-        }
-        #stop-button {
-            background-color: #F05626;
-            color: white;
-        }
-        #deleteDataButton {
-            background-color: #778899;
-            color: white;
-        }
-        #search-history {
-            margin-top: 20px;
-        }
-        .search-history-item {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fafafa;
-            margin-bottom: 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .search-history-item p {
-            margin: 0;
-        }
-        .search-history-item iframe {
-            width: 100%;
-            height: auto;
-            border: none;
-        }
-        #countdown-timer {
-            font-size: 20px;
-            font-weight: bold;
-            color: #FFA500;
-            margin-top: 10px;
-        }
-    </style>
+    });
+    </script>
+<style>
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+    }
+    main {
+        background-color: #1e1e1e;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+    }
+    h1, h2 {
+        color: #ffffff;
+    }
+    .search-info {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #242424;
+    }
+    .search-info div {
+        margin-bottom: 10px;
+    }
+    .search-info div span {
+        font-weight: bold;
+        color: #ffffff;
+    }
+    button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    #start-button {
+        background-color: #FFA500;
+        color: white;
+    }
+    #stop-button {
+        background-color: #F05626;
+        color: white;
+    }
+    #deleteDataButton {
+        background-color: #778899;
+        color: white;
+    }
+    #search-history {
+        margin-top: 20px;
+    }
+    .search-history-item {
+        padding: 15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #242424;
+        margin-bottom: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .search-history-item p {
+        margin: 0;
+        color: #e0e0e0;
+    }
+    .search-history-item iframe {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+    #countdown-timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFA500;
+        margin-top: 10px;
+    }
+</style>
+    
 </head>
 <body>
 <main>
@@ -235,7 +252,7 @@
                 // 保存总搜索次数到 localStorage
                 localStorage.setItem('totalSearches', totalSearches.toString());
                 // 检查是否已经达到总搜索次数的要求
-                if (totalSearches >= 36) {
+                if (totalSearches >= 32) {
                     stopAutoSearch();
                     localStorage.removeItem('totalSearches');
                     setTimeout(function(){
@@ -280,7 +297,7 @@
 
     function initializeCountdown() {
         const countdownElement = document.getElementById('countdown-timer');
-        let initialCountdown = Math.floor(Math.random() * 121) + 840; // 随机生成 15 分的倒计时
+        let initialCountdown = Math.floor(Math.random() * 60) + 900; // 随机生成15-16分钟的倒计时
         countdownElement.textContent = initialCountdown;
 
         countdownWorker = new Worker(URL.createObjectURL(new Blob([`
@@ -324,8 +341,8 @@ document.getElementById("deleteDataButton").addEventListener("click", function()
     document.getElementById('total-searches').textContent = '0';
     document.getElementById('completed-searches').textContent = '0';
     setTimeout(() => {
-        window.location.reload();
-    }, 2000); 
+         window.location.reload();
+   }, 2000);
 });
 
     document.getElementById('start-button').addEventListener('click', startAutoSearch);
