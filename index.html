@@ -273,6 +273,8 @@ function showPage(pageNumber) {
   localStorage.setItem('currentPage', pageNumber);
   // 更新页码显示
   updatePageButtons(pageNumber);
+  // 定位到页面最上方
+  window.scrollTo(0, 0);
 }
 
 function updatePageButtons(currentPage) {
