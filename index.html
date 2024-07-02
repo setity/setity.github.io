@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>阅读器</title>
+<title>本地TXT阅读器</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -13,6 +13,7 @@ body {
 h1 {
   text-align: center;
   color: #333;
+  display: block;
 }
 
 #fileInput {
@@ -20,6 +21,7 @@ h1 {
 }
 
 .label-input {
+  margin-top: 15px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -50,6 +52,8 @@ h1 {
 
 #searchInput {
   flex-grow: 1;
+  width:10px;
+  background-color: #f0f0f0; /* 输入框颜色 */
 }
 
 #searchResults {
@@ -58,6 +62,7 @@ h1 {
 
 #content {
   margin-top: 20px;
+  margin-bottom: 20px;
   white-space: pre-line;
   font-size: 16px;
 }
@@ -109,7 +114,9 @@ h1 {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #f0f0f0; /* 输入框颜色 */
+  border-radius:4px;
+  width: 75px;
 }
 
 #applySettingsButton {
@@ -141,44 +148,58 @@ h1 {
 </style>
 </head>
 <body>
-<h1>阅读器</h1>
-<div class="label-input">
+<h1 id="pageTitle">本地TXT阅读器</h1>
+<div id="fileSelection" class="label-input">
   <label for="fileInput">选择文件：</label>
   <input type="file" id="fileInput">
   <button id="loadFileButton">加载文件</button>
 </div>
-<div class="label-input">
-  <label for="searchInput">搜索关键词：</label>
-  <input type="text" id="searchInput" placeholder="输入关键词">
-  <button id="searchButton">搜索</button>
-</div>
-<div id="searchResults"></div>
 <div id="content"></div>
 <div id="pageButtons"></div>
 <div id="settings">
-  <label for="backgroundColorSelect">背景颜色：</label>
+  <label for="backgroundColorSelect">&emsp;背景颜色</label>
   <select id="backgroundColorSelect">
-    <option value="white">白色</option>
-    <option value="#f0f0f0">淡灰色</option>
-    <option value="#e0e0e0">浅灰色</option>
-    <option value="#dcdcdc">灰色</option>
+    <option value="">默认</option>
+    <option value="#FFFFFF">白雪</option>
+    <option value="#000000">漆黑</option>
+    <option value="#FFFFED">明黄</option>
+    <option value="#EEFAEE">淡绿</option>
+    <option value="#CCE8CF">草绿</option>
+    <option value="#FCEFFF">红粉</option>
+    <option value="#EFEFEF">深灰</option>
+    <option value="#F5F5DC">米色</option>
+    <option value="#D2B48C">茶色</option>
+    <option value="#C0C0C0">银色</option>
   </select>
-  <label for="fontSizeInput">字体大小：</label>
-  <input type="number" id="fontSizeInput" value="16"> px
-  <label for="fontColorSelect">字体颜色：</label>
+  <label for="fontSizeInput">&emsp;字体大小</label>
+  <input type="number" id="fontSizeInput" value="16">
+  <label for="fontColorSelect">&emsp;字体颜色</label>
   <select id="fontColorSelect">
-    <option value="black">黑色</option>
-    <option value="#333">深灰色</option>
-    <option value="#666">灰色</option>
-    <option value="#999">浅灰色</option>
+    <option value="">默认</option>
+    <option value="#9370DB">暗紫</option>
+    <option value="#2E8B57">藻绿</option>
+    <option value="#2F4F4F">深灰</option>
+    <option value="#778899">青灰</option>
+    <option value="#800000">栗色</option>
+    <option value="#6A5ACD">青蓝</option>
+    <option value="#BC8F8F">玫褐</option>
+    <option value="#F4A460">黄褐</option>
+    <option value="#F5F5DC">米色</option>
+    <option value="#F5F5F5">雾白</option>
   </select>
-  <label for="fontWeightSelect">字体粗细：</label>
+  <label for="fontWeightSelect">&emsp;粗细</label>
   <select id="fontWeightSelect">
     <option value="normal">正常</option>
     <option value="bold">粗体</option>
   </select>
   <button id="applySettingsButton">应用设置</button>
 </div>
+<div class="label-input">
+  <label for="searchInput">搜索文件内容</label>
+  <input type="text" id="searchInput" placeholder="输入关键词">&emsp;
+  <button id="searchButton">搜索</button>
+</div>
+<div id="searchResults"></div>
 <script>
 let textContent = '';
 
@@ -203,7 +224,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += paragraphsArray[i] + '<br>';
+        currentPageContentHTML += '&emsp;&emsp;' + paragraphsArray[i] + '&emsp;&emsp;';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= 10000) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
@@ -216,6 +237,9 @@ document.getElementById('fileInput').addEventListener('change', function() {
         pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
       }
       document.getElementById('content').innerHTML = pagesHTML;
+      // 隐藏文件选择区域和页面标题
+      document.getElementById('fileSelection').style.display = 'none';
+      document.getElementById('pageTitle').style.display = 'none';
       // 显示记录的页码或第一页
       const savedPage = localStorage.getItem('currentPage');
       if (savedPage) {
@@ -292,7 +316,6 @@ function updatePageButtons(currentPage) {
       pageButtonsDiv.appendChild(ellipsis);
     }
   }
-
   for (let i = startPage; i <= endPage; i++) {
     const pageButton = document.createElement('span');
     pageButton.classList.add('pageButton');
@@ -305,7 +328,6 @@ function updatePageButtons(currentPage) {
     });
     pageButtonsDiv.appendChild(pageButton);
   }
-
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
       const ellipsis = document.createElement('span');
@@ -388,14 +410,6 @@ document.getElementById('applySettingsButton').addEventListener('click', functio
     pages[i].style.fontWeight = fontWeight;
   }
 });
-
-// 初始页面加载时检查本地存储是否有页码记录
-const savedPage = localStorage.getItem('currentPage');
-if (savedPage) {
-  showPage(parseInt(savedPage));
-} else {
-  showPage(1); // 显示第一页
-}
 </script>
 </body>
 </html>
