@@ -214,22 +214,21 @@ document.getElementById('fileInput').addEventListener('change', function() {
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      const text = e.target.result;
-      // 清空内容
+      textContent = e.target.result;
+      // 清空内容和分页按钮
       document.getElementById('content').innerHTML = '';
-      // 增加 CSS 以保留原始格式
-      document.getElementById('content').style.whiteSpace = "pre-line";
+      document.getElementById('pageButtons').innerHTML = '';
+      document.getElementById('searchResults').innerHTML = '';
       // 检测设备类型
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const wordsPerPage = isMobile ? 4000 : 10000; // 根据设备类型设置每页字数
-
       let pagesHTML = '';
-      let paragraphsArray = text.split('\n');
+      let paragraphsArray = textContent.split('\n');
       let currentPageLength = 0;
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += paragraphsArray[i] + '\n';
+        currentPageContentHTML += paragraphsArray[i] + '<br>';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= wordsPerPage) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
@@ -240,22 +239,18 @@ document.getElementById('fileInput').addEventListener('change', function() {
       }
       if (currentPageContentHTML !== '') {
         pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
-        currentPageNumber++;
       }
       document.getElementById('content').innerHTML = pagesHTML;
-      // 添加分页按钮和页数显示
-      const pageButtonsDiv = document.getElementById('pageButtons');
-      for (let i = 1; i <= currentPageNumber; i++) {
-        const pageButton = document.createElement('span');
-        pageButton.classList.add('pageButton');
-        pageButton.innerText = i;
-        pageButton.addEventListener('click', function() {
-          showPage(i);
-        });
-        pageButtonsDiv.appendChild(pageButton);
+      // 隐藏文件选择区域和页面标题
+      document.getElementById('fileSelection').style.display = 'none';
+      document.getElementById('pageTitle').style.display = 'none';
+      // 显示记录的页码或第一页
+      const savedPage = localStorage.getItem('currentPage');
+      if (savedPage) {
+        showPage(parseInt(savedPage));
+      } else {
+        showPage(1); // 显示第一页
       }
-      // 显示第一页
-      showPage(1);
     };
     reader.readAsText(file);
   }
