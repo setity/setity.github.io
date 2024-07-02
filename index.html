@@ -23,28 +23,40 @@
 .hidden {
   display: none;
 }
+.highlight {
+  background-color: yellow;
+}
+#searchResults {
+  margin-top: 20px;
+}
 </style>
 </head>
 <body>
 <h1>阅读器</h1>
-<input type="file" id="fileInput">
+<input type="file" id="fileInput"><br><br>
+<input type="text" id="searchInput" placeholder="搜索关键词">
+<button id="searchButton">搜索</button>
+<div id="searchResults"></div>
 <div id="content"></div>
 <div id="pageButtons"></div>
 <script>
+let textContent = '';
+
 document.getElementById('fileInput').addEventListener('change', function() {
   const file = this.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      const text = e.target.result;
+      textContent = e.target.result;
       // 清空内容和分页按钮
       document.getElementById('content').innerHTML = '';
       document.getElementById('pageButtons').innerHTML = '';
+      document.getElementById('searchResults').innerHTML = '';
       // 增加 CSS 以保留原始格式
       document.getElementById('content').style.whiteSpace = "pre-line";
       // 按照每页10000字进行分割
       let pagesHTML = '';
-      let paragraphsArray = text.split('\n');
+      let paragraphsArray = textContent.split('\n');
       let currentPageLength = 0;
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
@@ -179,6 +191,42 @@ function updatePageButtons(currentPage) {
     pageButtonsDiv.appendChild(nextButton);
   }
 }
+
+document.getElementById('searchButton').addEventListener('click', function() {
+  const searchTerm = document.getElementById('searchInput').value.trim();
+  if (searchTerm) {
+    const searchResultsDiv = document.getElementById('searchResults');
+    searchResultsDiv.innerHTML = '';
+    const pages = document.getElementsByClassName('page');
+    let searchResults = [];
+    
+    for (let i = 0; i < pages.length; i++) {
+      const pageContent = pages[i].textContent || pages[i].innerText;
+      const regex = new RegExp(searchTerm, 'gi');
+      let match;
+      while ((match = regex.exec(pageContent)) !== null) {
+        searchResults.push({
+          page: i + 1,
+          context: pageContent.substring(Math.max(0, match.index - 30), Math.min(pageContent.length, match.index + 30))
+        });
+      }
+    }
+
+    searchResults.forEach(result => {
+      const resultDiv = document.createElement('div');
+      resultDiv.innerHTML = `页码: ${result.page} - ...${result.context.replace(new RegExp(searchTerm, 'gi'), match => `<span class="highlight">${match}</span>`)}...`;
+      resultDiv.addEventListener('click', function() {
+        showPage(result.page);
+        searchResultsDiv.innerHTML = ''; // 隐藏搜索结果
+      });
+      searchResultsDiv.appendChild(resultDiv);
+    });
+
+    if (searchResults.length === 0) {
+      searchResultsDiv.innerHTML = '未找到匹配的结果。';
+    }
+  }
+});
 
 // 初始页面加载时检查本地存储是否有页码记录
 const savedPage = localStorage.getItem('currentPage');
