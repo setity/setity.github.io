@@ -275,6 +275,8 @@ function showPage(pageNumber) {
   updatePageButtons(pageNumber);
   // 定位到页面最上方
   window.scrollTo(0, 0);
+  // 隐藏搜索结果
+  document.getElementById('searchResults').innerHTML = '';
 }
 
 function updatePageButtons(currentPage) {
