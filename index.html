@@ -7,6 +7,10 @@
   page-break-after: always;
   margin-bottom: 20px;
   display: none;
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  font-weight: normal;
 }
 #pageButtons {
   margin-top: 20px;
@@ -29,6 +33,17 @@
 #searchResults {
   margin-top: 20px;
 }
+#settings {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+label {
+  margin-right: 10px;
+}
+select, input[type="color"], input[type="number"] {
+  margin-right: 10px;
+}
 </style>
 </head>
 <body>
@@ -39,6 +54,30 @@
 <div id="searchResults"></div>
 <div id="content"></div>
 <div id="pageButtons"></div>
+<div id="settings">
+  <label>背景颜色:</label>
+  <select id="backgroundColorSelect">
+    <option value="white">白色</option>
+    <option value="#f0f0f0">淡灰色</option>
+    <option value="#e0e0e0">浅灰色</option>
+    <option value="#dcdcdc">灰色</option>
+  </select>
+  <label>字体大小:</label>
+  <input type="number" id="fontSizeInput" value="16"> px
+  <label>字体颜色:</label>
+  <select id="fontColorSelect">
+    <option value="black">黑色</option>
+    <option value="darkslategray">深灰色</option>
+    <option value="dimgray">灰色</option>
+    <option value="darkgray">浅灰色</option>
+  </select>
+  <label>字体粗细:</label>
+  <select id="fontWeightSelect">
+    <option value="normal">正常</option>
+    <option value="bold">粗体</option>
+  </select>
+  <button id="applySettingsButton">应用设置</button>
+</div>
 <script>
 let textContent = '';
 
@@ -76,10 +115,10 @@ document.getElementById('fileInput').addEventListener('change', function() {
       document.getElementById('content').innerHTML = pagesHTML;
       // 显示记录的页码或第一页
       const savedPage = localStorage.getItem('currentPage');
-      if (savedPage && savedPage <= currentPageNumber) {
+      if (savedPage) {
         showPage(parseInt(savedPage));
       } else {
-        showPage(1);
+        showPage(1); // 显示第一页
       }
     };
     reader.readAsText(file);
@@ -215,16 +254,31 @@ document.getElementById('searchButton').addEventListener('click', function() {
     searchResults.forEach(result => {
       const resultDiv = document.createElement('div');
       resultDiv.innerHTML = `页码: ${result.page} - ...${result.context.replace(new RegExp(searchTerm, 'gi'), match => `<span class="highlight">${match}</span>`)}...`;
+      resultDiv.classList.add('searchResult');
       resultDiv.addEventListener('click', function() {
         showPage(result.page);
-        searchResultsDiv.innerHTML = ''; // 隐藏搜索结果
+        searchResultsDiv.innerHTML = '';
       });
       searchResultsDiv.appendChild(resultDiv);
     });
+  }
+});
 
-    if (searchResults.length === 0) {
-      searchResultsDiv.innerHTML = '未找到匹配的结果。';
-    }
+document.getElementById('applySettingsButton').addEventListener('click', function() {
+  const backgroundColor = document.getElementById('backgroundColorSelect').value;
+  const fontSize = document.getElementById('fontSizeInput').value + 'px';
+  const fontColor = document.getElementById('fontColorSelect').value;
+  const fontWeight = document.getElementById('fontWeightSelect').value;
+
+  document.body.style.backgroundColor = backgroundColor;
+  document.body.style.fontSize = fontSize;
+
+  const pages = document.getElementsByClassName('page');
+  for (let i = 0; i < pages.length; i++) {
+    pages[i].style.backgroundColor = backgroundColor;
+    pages[i].style.fontSize = fontSize;
+    pages[i].style.color = fontColor;
+    pages[i].style.fontWeight = fontWeight;
   }
 });
 
