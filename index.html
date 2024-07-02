@@ -382,6 +382,8 @@ document.getElementById('searchButton').addEventListener('click', function() {
       resultDiv.addEventListener('click', function() {
         showPage(i + 1);
         searchResultsDiv.innerHTML = '';
+        // 每次搜索后向下翻动一页
+        window.scrollBy(0, window.innerHeight);
       });
       searchResultsDiv.appendChild(resultDiv);
       searchCount++;
