@@ -275,6 +275,15 @@ function showPage(pageNumber) {
   updatePageButtons(pageNumber);
   // 定位到页面最上方
   window.scrollTo(0, 0);
+  // 显示提示信息
+  const scrollInfo = document.getElementById('scrollInfo');
+  scrollInfo.textContent = `第 ${pageNumber} 页，朗读请点击地址栏末尾的朗读按钮`;
+  scrollInfo.style.color = 'red'; // 设置颜色为红色
+  scrollInfo.style.fontWeight = 'bold'; // 加粗显示
+  // 设置定时器，在4秒后隐藏提示信息
+  setTimeout(function() {
+    scrollInfo.textContent = '';
+  }, 4000);
   // 隐藏搜索结果
   document.getElementById('searchResults').innerHTML = '';
 }
