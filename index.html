@@ -3,75 +3,176 @@
 <head>
 <title>阅读器</title>
 <style>
-.page {
-  page-break-after: always;
-  margin-bottom: 20px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+#fileInput {
   display: none;
-  font-size: 16px;
-  color: black;
-  background-color: white;
-  font-weight: normal;
 }
-#pageButtons {
-  margin-top: 20px;
+
+.label-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
-.pageButton {
+
+.label-input label {
   margin-right: 10px;
+  color: #666;
+  font-weight: bold;
+}
+
+.label-input input[type="file"], .label-input input[type="text"], .label-input select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.label-input button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
-.currentPage {
-  font-weight: bold;
-  color: red;
-  font-size: larger;
+
+#searchInput {
+  flex-grow: 1;
 }
-.hidden {
-  display: none;
-}
-.highlight {
-  background-color: yellow;
-}
+
 #searchResults {
   margin-top: 20px;
 }
+
+#content {
+  margin-top: 20px;
+  white-space: pre-line;
+  font-size: 16px;
+}
+
+.pageButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.pageButton:hover {
+  background-color: #ccc;
+}
+
+.currentPage {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
 #settings {
   margin-top: 20px;
   display: flex;
   align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-label {
+
+#settings label {
   margin-right: 10px;
+  color: #666;
 }
-select, input[type="color"], input[type="number"] {
-  margin-right: 10px;
+
+#settings select, #settings input[type="color"], #settings input[type="number"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#applySettingsButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#applySettingsButton:hover {
+  background-color: #45a049;
+}
+
+.searchResult {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.searchResult:hover {
+  background-color: #f0f0f0;
 }
 </style>
 </head>
 <body>
 <h1>阅读器</h1>
-<input type="file" id="fileInput"><br><br>
-<input type="text" id="searchInput" placeholder="搜索关键词">
-<button id="searchButton">搜索</button>
+<div class="label-input">
+  <label for="fileInput">选择文件：</label>
+  <input type="file" id="fileInput">
+  <button id="loadFileButton">加载文件</button>
+</div>
+<div class="label-input">
+  <label for="searchInput">搜索关键词：</label>
+  <input type="text" id="searchInput" placeholder="输入关键词">
+  <button id="searchButton">搜索</button>
+</div>
 <div id="searchResults"></div>
 <div id="content"></div>
 <div id="pageButtons"></div>
 <div id="settings">
-  <label>背景颜色:</label>
+  <label for="backgroundColorSelect">背景颜色：</label>
   <select id="backgroundColorSelect">
     <option value="white">白色</option>
     <option value="#f0f0f0">淡灰色</option>
     <option value="#e0e0e0">浅灰色</option>
     <option value="#dcdcdc">灰色</option>
   </select>
-  <label>字体大小:</label>
+  <label for="fontSizeInput">字体大小：</label>
   <input type="number" id="fontSizeInput" value="16"> px
-  <label>字体颜色:</label>
+  <label for="fontColorSelect">字体颜色：</label>
   <select id="fontColorSelect">
     <option value="black">黑色</option>
-    <option value="darkslategray">深灰色</option>
-    <option value="dimgray">灰色</option>
-    <option value="darkgray">浅灰色</option>
+    <option value="#333">深灰色</option>
+    <option value="#666">灰色</option>
+    <option value="#999">浅灰色</option>
   </select>
-  <label>字体粗细:</label>
+  <label for="fontWeightSelect">字体粗细：</label>
   <select id="fontWeightSelect">
     <option value="normal">正常</option>
     <option value="bold">粗体</option>
@@ -80,6 +181,10 @@ select, input[type="color"], input[type="number"] {
 </div>
 <script>
 let textContent = '';
+
+document.getElementById('loadFileButton').addEventListener('click', function() {
+  document.getElementById('fileInput').click();
+});
 
 document.getElementById('fileInput').addEventListener('change', function() {
   const file = this.files[0];
@@ -91,8 +196,6 @@ document.getElementById('fileInput').addEventListener('change', function() {
       document.getElementById('content').innerHTML = '';
       document.getElementById('pageButtons').innerHTML = '';
       document.getElementById('searchResults').innerHTML = '';
-      // 增加 CSS 以保留原始格式
-      document.getElementById('content').style.whiteSpace = "pre-line";
       // 按照每页10000字进行分割
       let pagesHTML = '';
       let paragraphsArray = textContent.split('\n');
@@ -100,7 +203,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += paragraphsArray[i] + '\n';
+        currentPageContentHTML += paragraphsArray[i] + '<br>';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= 10000) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
@@ -175,7 +278,6 @@ function updatePageButtons(currentPage) {
     endPage = totalPages;
     startPage = Math.max(1, totalPages - visiblePages + 1);
   }
-  
   if (startPage > 1) {
     const firstPageButton = document.createElement('span');
     firstPageButton.classList.add('pageButton');
@@ -190,20 +292,20 @@ function updatePageButtons(currentPage) {
       pageButtonsDiv.appendChild(ellipsis);
     }
   }
-  
+
   for (let i = startPage; i <= endPage; i++) {
     const pageButton = document.createElement('span');
     pageButton.classList.add('pageButton');
+    pageButton.innerText = i;
     if (i === currentPage) {
       pageButton.classList.add('currentPage');
     }
-    pageButton.innerText = i;
     pageButton.addEventListener('click', function() {
       showPage(i);
     });
     pageButtonsDiv.appendChild(pageButton);
   }
-  
+
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
       const ellipsis = document.createElement('span');
@@ -233,34 +335,39 @@ function updatePageButtons(currentPage) {
 
 document.getElementById('searchButton').addEventListener('click', function() {
   const searchTerm = document.getElementById('searchInput').value.trim();
-  if (searchTerm) {
-    const searchResultsDiv = document.getElementById('searchResults');
-    searchResultsDiv.innerHTML = '';
-    const pages = document.getElementsByClassName('page');
-    let searchResults = [];
-    
-    for (let i = 0; i < pages.length; i++) {
-      const pageContent = pages[i].textContent || pages[i].innerText;
-      const regex = new RegExp(searchTerm, 'gi');
-      let match;
-      while ((match = regex.exec(pageContent)) !== null) {
-        searchResults.push({
-          page: i + 1,
-          context: pageContent.substring(Math.max(0, match.index - 30), Math.min(pageContent.length, match.index + 30))
-        });
-      }
-    }
+  if (searchTerm === '') {
+    return;
+  }
+  const pages = document.getElementsByClassName('page');
+  const searchResultsDiv = document.getElementById('searchResults');
+  searchResultsDiv.innerHTML = '';
+  let searchCount = 0;
 
-    searchResults.forEach(result => {
+  for (let i = 0; i < pages.length; i++) {
+    const pageContent = pages[i].textContent;
+    const searchTermIndex = pageContent.indexOf(searchTerm);
+    if (searchTermIndex !== -1) {
+      const contextBefore = pageContent.substring(Math.max(0, searchTermIndex - 50), searchTermIndex);
+      const contextHighlighted = pageContent.substring(searchTermIndex, searchTermIndex + searchTerm.length);
+      const contextAfter = pageContent.substring(searchTermIndex + searchTerm.length, searchTermIndex + searchTerm.length + 50);
+
       const resultDiv = document.createElement('div');
-      resultDiv.innerHTML = `页码: ${result.page} - ...${result.context.replace(new RegExp(searchTerm, 'gi'), match => `<span class="highlight">${match}</span>`)}...`;
+      resultDiv.innerHTML = `${contextBefore}<span class="highlight">${contextHighlighted}</span>${contextAfter}`;
       resultDiv.classList.add('searchResult');
       resultDiv.addEventListener('click', function() {
-        showPage(result.page);
+        showPage(i + 1);
         searchResultsDiv.innerHTML = '';
       });
       searchResultsDiv.appendChild(resultDiv);
-    });
+      searchCount++;
+    }
+  }
+
+  if (searchCount === 0) {
+    const noResultDiv = document.createElement('div');
+    noResultDiv.textContent = '未找到匹配结果。';
+    noResultDiv.classList.add('searchResult');
+    searchResultsDiv.appendChild(noResultDiv);
   }
 });
 
