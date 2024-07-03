@@ -146,6 +146,53 @@ h1 {
 .searchResult:hover {
   background-color: #f0f0f0;
 }
+
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .label-input label, #settings label {
+    font-size: 14px;
+  }
+
+  .label-input input[type="file"], .label-input input[type="text"], .label-input select, #settings select, #settings input[type="color"], #settings input[type="number"] {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .label-input button, #applySettingsButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .pageButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 6px;
+  }
+
+  #content {
+    font-size: 14px;
+  }
+
+  #settings {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+    margin-top: 5px;
+  }
+}
 </style>
 </head>
 <body>
@@ -294,7 +341,8 @@ function showPage(pageNumber) {
 function updatePageButtons(currentPage) {
   const pageButtonsDiv = document.getElementById('pageButtons');
   const totalPages = document.getElementsByClassName('page').length;
-  const visiblePages = 5;
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const visiblePages = isMobile ? 3 : 5; // 根据设备类型设置每页字数
   pageButtonsDiv.innerHTML = '';
 
   // 添加上一页按钮
@@ -309,8 +357,8 @@ function updatePageButtons(currentPage) {
   }
 
   // 当前页及前后2个页码
-  let startPage = currentPage - 2;
-  let endPage = currentPage + 2;
+  let startPage = currentPage - Math.floor(visiblePages / 2);
+  let endPage = currentPage + Math.floor(visiblePages / 2);
   if (startPage < 1) {
     startPage = 1;
     endPage = Math.min(totalPages, visiblePages);
