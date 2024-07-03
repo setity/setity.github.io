@@ -52,7 +52,7 @@ h1 {
 }
 
 #searchInput {
-  width:40%;
+  width:27%;
   background-color: #f0f0f0; /* 输入框颜色 */
 }
 
@@ -116,7 +116,7 @@ h1 {
   border: 1px solid #ccc;
   background-color: #f0f0f0; /* 输入框颜色 */
   border-radius:4px;
-  width: 75px;
+  width: 95px;
 }
 
 #applySettingsButton {
@@ -172,8 +172,16 @@ h1 {
     <option value="#D2B48C">茶色</option>
     <option value="#C0C0C0">银色</option>
   </select>
-  <label for="fontSizeInput">&emsp;字体大小</label>
-  <input type="number" id="fontSizeInput" value="16">
+  <label for="fontSizeInput">&emsp;</label>
+    <select id="fontSizeInput">
+    <option value="16">字体大小</option>
+    <option value="8">巨小</option>
+    <option value="12">偏小</option>
+    <option value="14">略小</option>
+    <option value="18">略大</option>
+    <option value="20">偏大</option>
+    <option value="32">巨大</option>
+  </select>
   <label for="fontColorSelect">&emsp;</label>
   <select id="fontColorSelect">
     <option value="">字体颜色</option>
