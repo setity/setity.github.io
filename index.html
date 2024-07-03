@@ -52,8 +52,7 @@ h1 {
 }
 
 #searchInput {
-  flex-grow: 1;
-  width:10px;
+  width:40%;
   background-color: #f0f0f0; /* 输入框颜色 */
 }
 
@@ -145,53 +144,6 @@ h1 {
 
 .searchResult:hover {
   background-color: #f0f0f0;
-}
-
-@media (max-width: 600px) {
-  body {
-    margin: 10px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  .label-input label, #settings label {
-    font-size: 14px;
-  }
-
-  .label-input input[type="file"], .label-input input[type="text"], .label-input select, #settings select, #settings input[type="color"], #settings input[type="number"] {
-    padding: 6px;
-    font-size: 12px;
-  }
-
-  .label-input button, #applySettingsButton {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .pageButton {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  #searchInput {
-    width: 100%;
-    padding: 6px;
-  }
-
-  #content {
-    font-size: 14px;
-  }
-
-  #settings {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
-    margin-top: 5px;
-  }
 }
 </style>
 </head>
