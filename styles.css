@@ -85,9 +85,49 @@ h1 {
   background-color: #ccc;
 }
 
+.currentPage {
+  background-color: #4CAF50;
+  color: white;
+}
+
 #pageButtons {
   display: flex;
   flex-wrap: wrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#applySettingsButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#applySettingsButton:hover {
+  background-color: #45a049;
+}
+
+.searchResult {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.searchResult:hover {
+  background-color: #f0f0f0;
 }
 
 @media (max-width: 600px) {
