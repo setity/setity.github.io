@@ -1,0 +1,172 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  display: block;
+}
+
+#fileInput {
+  display: none;
+}
+
+.label-input {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: center; /* 让内部元素水平居中 */
+}
+
+.label-input label {
+  margin-right: 10px;
+  color: #666;
+  font-weight: bold;
+}
+
+.label-input input[type="file"], .label-input input[type="text"], .label-input select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.label-input input[type="text"] {
+  margin-right: 10px; /* 给搜索框和按钮之间添加间距 */
+  flex: 1; /* 确保搜索框占据可用空间 */
+}
+
+.label-input button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0; /* 确保按钮不压缩 */
+}
+
+#searchInput {
+  width: 100%;
+  background-color: #f0f0f0; /* 输入框颜色 */
+}
+
+#searchResults {
+  margin-top: 20px;
+}
+
+#content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  white-space: pre-line;
+  font-size: 16px;
+}
+
+.pageButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #ddd;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.pageButton:hover {
+  background-color: #ccc;
+}
+
+#pageButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .label-input input[type="text"], #searchInput {
+    width: 100%;
+    margin-right: 0; 
+  }
+
+  #settings {
+    padding: 5px;
+  }
+
+  #applySettingsButton {
+    margin-left: 0;
+  }
+
+  .pageButton {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+/* 设置选项和应用设置按钮样式 */
+#settings {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#settings label {
+  margin-right: 10px;
+  color: #666;
+}
+
+#settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: 10px; /* 确保在小屏幕设备上有足够的底部间距 */
+}
+
+#applySettingsButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#applySettingsButton:hover {
+  background-color: #45a049;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  #settings {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+  }
+
+  #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  #applySettingsButton {
+    margin-top: 10px;
+  }
+}
