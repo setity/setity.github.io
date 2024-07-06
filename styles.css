@@ -133,7 +133,7 @@ h1 {
 @media (max-width: 600px) {
   .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
 
   .label-input input[type="text"], #searchInput {
@@ -179,7 +179,7 @@ h1 {
   background-color: #f0f0f0;
   border-radius: 4px;
   margin-right: 10px;
-  margin-bottom: 10px; /* 确保在小屏幕设备上有足够的底部间距 */
+  margin-bottom: 4px; /* 确保在小屏幕设备上有足够的底部间距 */
 }
 
 #applySettingsButton {
