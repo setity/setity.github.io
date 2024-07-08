@@ -31,6 +31,27 @@ body {
  background-color: #45a049;
 }
 
+.readme {
+  display: block;
+  text-decoration: none; 
+  margin: 0 auto; 
+  margin-bottom:25px;
+  margin-top:0;
+  max-width: fit-content; 
+  font-size: 16px; 
+  color: #6495ED; 
+  animation: pulse 2s infinite alternate; /* 添加动画效果 */
+}
+
+@keyframes pulse {
+  0% {
+  transform: scale(1);
+  }
+  100% {
+  transform: scale(1.08);
+  }
+}
+
 h1 {
   text-align: center;
   color: #333;
