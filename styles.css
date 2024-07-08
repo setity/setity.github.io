@@ -5,6 +5,32 @@ body {
   padding: 0;
 }
 
+.top-bottom-buttons { 
+ position: fixed;
+ bottom: 50%;
+ right: 5px;
+
+ }
+
+.button { 
+ display: block;
+ padding: 5px 10px;
+ background-color: #4CAF50;
+ color: white;
+ text-align: center;
+ text-decoration: none;
+ border-radius: 2px;
+ margin-bottom: 5px;
+ font-size:16px;
+ border-radius:5px;
+ opacity: 0.4;
+ }
+ 
+.button:hover {
+ opacity: 1;
+ background-color: #45a049;
+}
+
 h1 {
   text-align: center;
   color: #333;
@@ -85,71 +111,6 @@ h1 {
   background-color: #ccc;
 }
 
-.currentPage {
-  background-color: #4CAF50;
-  color: white;
-}
-
-#pageButtons {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.hidden {
-  display: none;
-}
-
-.highlight {
-  background-color: yellow;
-}
-
-#applySettingsButton {
-  padding: 8px 16px;
-  font-size: 14px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-#applySettingsButton:hover {
-  background-color: #45a049;
-}
-
-.searchResult {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
-  cursor: pointer;
-}
-
-.searchResult:hover {
-  background-color: #f0f0f0;
-}
-
-@media (max-width: 600px) {
-  .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
-    width: 100%;
-  }
-
-  .label-input input[type="text"], #searchInput {
-    width: 100%;
-    margin-right: 0; 
-    margin-bottom: 5px;
-  }
-
-  #settings {
-    padding: 5px;
-  }
-
-  #applySettingsButton {
-    margin-left: 0;
-  }
-}
-
 /* 设置选项和应用设置按钮样式 */
 #settings {
   margin-top: 20px;
@@ -183,12 +144,78 @@ h1 {
   cursor: pointer;
 }
 
+.currentPage {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#pageButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#applySettingsButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 #applySettingsButton:hover {
   background-color: #45a049;
 }
 
-/* Media query for mobile devices */
+#searchButton:hover {
+  background-color: #45a049;
+}
+
+#loadFileButton:hover {
+  background-color: #45a049;
+}
+
+.searchResult {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.searchResult:hover {
+  background-color: #f0f0f0;
+}
+
 @media (max-width: 600px) {
+  .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+    width: 100%;
+  }
+
+  .label-input input[type="text"], #searchInput {
+    width: 100%;
+    margin-right: 0; 
+    margin-bottom: 5px;
+  }
+
+  #settings {
+    padding: 5px;
+  }
+
+  #applySettingsButton {
+    margin-left: 0;
+  }
+  
   #settings {
     flex-direction: column;
     align-items: flex-start;
@@ -198,6 +225,7 @@ h1 {
   #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
     width: 100%;
     margin-right: 0;
+    margin-top: 6px;
   }
 
   #applySettingsButton {
