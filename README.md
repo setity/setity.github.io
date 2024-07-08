@@ -1,5 +1,3 @@
-本地txt阅读器使用说明 body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; } h1, h2 { color: #333; } p { line-height: 1.6; } a { color: #007bff; text-decoration: none; } a:hover { text-decoration: underline; }
-
 # 本地txt阅读器使用说明
 
 ## 如何使用
