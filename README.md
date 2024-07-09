@@ -19,4 +19,7 @@
 6\. 配合edge浏览器可以朗读内容。
 
 ## 乞讨码
-![80eff45d0601a3ac1e965a743000f69](https://github.com/setity/setity.github.io/assets/163283893/c00195cf-1990-400c-bd5f-dc19848f0b97)
+[1.点此免费助力开发者](https://couwhoupesho.net/4/7705695 "助力开发者购买服务器")  
+  
+2.付费助力开发者：  
+![感谢金主大人](https://github.com/setity/setity.github.io/assets/163283893/c00195cf-1990-400c-bd5f-dc19848f0b97)
