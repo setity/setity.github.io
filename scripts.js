@@ -169,6 +169,7 @@ function updatePageButtons(currentPage) {
   }
 }
 
+// 搜索文章内容
 document.getElementById('searchButton').addEventListener('click', function() {
   const searchTerm = document.getElementById('searchInput').value.trim();
   if (searchTerm === '') {
@@ -210,6 +211,17 @@ document.getElementById('searchButton').addEventListener('click', function() {
     noResultDiv.classList.add('searchResult');
     searchResultsDiv.appendChild(noResultDiv);
   }
+});
+
+// 网络搜书
+document.getElementById("netsearchButton").addEventListener("click", function() {
+    var keyword = document.getElementById("searchInput").value;
+    if (keyword.trim() === "") {
+    alert("请输入搜索关键词！");
+    return;
+    }
+    var searchUrl = "https://www.bing.com/search?q=" + encodeURIComponent(keyword + "txt下载");
+    window.open(searchUrl, "_blank");
 });
 
 document.getElementById('applySettingsButton').addEventListener('click', function() {
