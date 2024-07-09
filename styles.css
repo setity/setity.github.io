@@ -23,18 +23,33 @@ body {
  margin-bottom: 5px;
  font-size:16px;
  border-radius:5px;
- opacity: 0.4;
+ opacity: 0.6;
+ width: 15px;
+ height : 25px;
  }
- 
+
 .button:hover {
  opacity: 1;
  background-color: #45a049;
 }
 
-.readme {
+#like {
+    display: inline-block; /* 让链接元素表现为块级元素，以便设置宽高 */
+    background-image: url('https://github.com/setity/setitytest/assets/163283893/1d41ce7b-bea7-4855-8a51-7bb1d5b0020b');
+    background-size: cover; /* 背景图片大小设置为覆盖整个元素 */
+    background-repeat: no-repeat; /* 禁止背景图片重复 */
+    text-decoration: none; /* 可选：移除下划线 */
+    color: #ffffff; /* 可选：设置链接文字颜色 */
+    width: 15px;
+    height : 25px;
+    animation: pulse 2s infinite alternate; /* 添加动画效果 */
+}
+
+#readme {
   display: block;
   text-decoration: none; 
   margin: 0 auto; 
+  margin-top:100px;
   margin-bottom:25px;
   margin-top:0;
   max-width: fit-content; 
