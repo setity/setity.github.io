@@ -39,6 +39,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       // 隐藏文件选择区域和页面标题
       document.getElementById('fileSelection').style.display = 'none';
       document.getElementById('pageTitle').style.display = 'none';
+      document.getElementById('readme').style.display = 'none';
       // 显示记录的页码或第一页
       const savedPage = localStorage.getItem('currentPage');
       if (savedPage) {
