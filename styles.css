@@ -251,7 +251,7 @@ h1 {
 
 .bookmark {
     display: block;
-    width: 15px;
+    width: 22px;
     height: 46px;
     opacity: 0.2; /* 初始透明度 */
     transition: width 0.4s, opacity 0.4s; /* 添加 opacity 过渡 */
@@ -259,8 +259,8 @@ h1 {
     text-decoration: none; /* 去掉超链接下划线 */
     overflow: hidden; /* 隐藏超链接文字 */
     position: relative; /* 相对定位 */
-    border-top-right-radius:15px;
-    border-bottom-right-radius:15px;
+    border-top-right-radius:12px;
+    border-bottom-right-radius:12px;
 }
 
 #bookmark1 {
