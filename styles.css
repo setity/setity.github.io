@@ -241,6 +241,66 @@ h1 {
   background-color: #f0f0f0;
 }
 
+/* 友情链接 */
+.bookmark-widget {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bookmark {
+    display: block;
+    width: 15px;
+    height: 46px;
+    opacity: 0.2; /* 初始透明度 */
+    transition: width 0.4s, opacity 0.4s; /* 添加 opacity 过渡 */
+    margin-bottom: 10px;
+    text-decoration: none; /* 去掉超链接下划线 */
+    overflow: hidden; /* 隐藏超链接文字 */
+    position: relative; /* 相对定位 */
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+#bookmark1 {
+background-color:#00ccc9;
+}
+#bookmark2 {
+background-color:#53cc00;
+}
+#bookmark3 {
+background-color:#ffba1e;
+}
+#bookmark4 {
+background-color:#ff3e31;
+}
+#bookmark5 {
+background-color:#9758ff;
+}
+
+.bookmark-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 16px;
+    opacity: 0; /* 初始不显示 */
+    transition: opacity 0.4s;
+    white-space: nowrap; /* 禁止文字换行 */
+}
+
+.bookmark:hover {
+    width: 100px;
+    opacity: 1; /* 悬停时完全不透明 */
+}
+
+.bookmark:hover .bookmark-label {
+    opacity: 1; /* 悬停时显示文字 */
+}
+
+/* 移动设备 */
 @media (max-width: 600px) {
   .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
     width: 100%;
