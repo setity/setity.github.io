@@ -6,7 +6,7 @@
 
 2\. 电脑Edge浏览器自然语音朗读功能失效无法使用常规解决办法：控制面板-Microsoft Edge WebView2 Runtime-修复
 
-3\. 电脑Edge浏览器自然语音朗读功能失效无法使用$\color{red} {！慎用！} $解决办法：用everything搜索edge浏览器和edge runtime相关的文件夹删除后重装edge，重装后，保持打开状态一小时左右等待自然语音加载完成后即可使用。$\color{red} {！注意！} 这种方式会导致依赖webview runtime的应用不能使用
+3\. 电脑Edge浏览器自然语音朗读功能失效无法使用$\color{red} {慎用} $解决办法：用everything搜索edge浏览器和edge runtime相关的文件夹删除后重装edge，重装后，保持打开状态一小时左右等待自然语音加载完成后即可使用。$\color{red} {注意} 这种方式会导致依赖webview runtime的应用不能使用
 
 ## 功能简介
 
