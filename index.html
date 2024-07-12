@@ -1,97 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>TXT阅读器</title>
-<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg t='1719904173616' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='5549' width='200' height='200'><path d='M344.6528 128c56.32 0 112.0768 17.0752 167.3472 51.2l9.7536-5.8368C573.824 143.104 626.3552 128 679.3472 128H972.8v742.4H676.7616c-58.0096 0-112.9216 17.0752-164.7616 51.2-51.84-34.1248-106.752-51.2-164.7616-51.2H51.2V128h293.4528z m0 76.8H128v588.8h219.2384c43.5712 0 85.8112 7.6288 126.3872 22.7072L473.6 245.76l-1.9712-1.2288C428.1088 217.6512 386.1248 204.8 344.6528 204.8zM896 204.8h-216.6528c-36.1728 0-72.704 9.7536-109.568 29.6704l-8.5504 4.7616-10.8288 6.4768v570.5728a360.448 360.448 0 0 1 115.4048-22.528l10.9568-0.1536H896V204.8z m-76.8 332.8v76.8h-192v-76.8H819.2z m-422.4 0v76.8H204.8v-76.8h192zM819.2 358.4v76.8h-192v-76.8H819.2z m-422.4 0v76.8H204.8v-76.8h192z' p-id='5550' fill='%23ffffff'></path></svg>">
-<meta name="monetag" content="272e58c542173fa61931855702596eb6">
-    <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('glizauvo.net',7705691,document.createElement('script'))</script>
-    <script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('mutcheng.net',7705685,document.createElement('script'))</script>
+    <title>TXT阅读器</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg t='1719904173616' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='5549' width='200' height='200'><path d='M344.6528 128c56.32 0 112.0768 17.0752 167.3472 51.2l9.7536-5.8368C573.824 143.104 626.3552 128 679.3472 128H972.8v742.4H676.7616c-58.0096 0-112.9216 17.0752-164.7616 51.2-51.84-34.1248-106.752-51.2-164.7616-51.2H51.2V128h293.4528z m0 76.8H128v588.8h219.2384c43.5712 0 85.8112 7.6288 126.3872 22.7072L473.6 245.76l-1.9712-1.2288C428.1088 217.6512 386.1248 204.8 344.6528 204.8zM896 204.8h-216.6528c-36.1728 0-72.704 9.7536-109.568 29.6704l-8.5504 4.7616-10.8288 6.4768v570.5728a360.448 360.448 0 0 1 115.4048-22.528l10.9568-0.1536H896V204.8z m-76.8 332.8v76.8h-192v-76.8H819.2z m-422.4 0v76.8H204.8v-76.8h192zM819.2 358.4v76.8h-192v-76.8H819.2z m-422.4 0v76.8H204.8v-76.8h192z' p-id='5550' fill='%23ffffff'></path></svg>">
+    <script src="./src/scripts.js"></script>
+    <meta name="monetag" content="272e58c542173fa61931855702596eb6">
+    <script>(function (d, z, s) { s.src = 'https://' + d + '/401/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('glizauvo.net', 7705691, document.createElement('script'))</script>
+    <script>(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('mutcheng.net', 7705685, document.createElement('script'))</script>
     <script src="https://atshroomisha.com/act/files/tag.min.js?z=7705683" data-cfasync="false" async></script>
 </head>
+
 <body>
-<div class="top-bottom-buttons">
- <a class="button" href="javascript:scrollTo(0, 0)">⬆</a> 
- <a class="button" href="javascript:window.scrollTo(0, document.body.scrollHeight)">⬇</a>
- <a id="like" class="button" title="助力开发者购买服务器" href="https://couwhoupesho.net/4/7705695" target="_blank"></a>
-</div>
-<div id="scrollInfo"></div>
-<h1 id="pageTitle">本地TXT阅读器</h1>
-<a id="readme" href="readme" target="_blank">使用说明</a>
-<div id="fileSelection" class="label-input">
-  <label for="fileInput">选择文件：</label>
-  <input type="file" id="fileInput" accept="text/plain">
-  <button id="loadFileButton">加载文件</button>
-</div>
-<div id="content"></div>
-<div id="pageButtons"></div>
-<div id="settings">
-  <select id="backgroundColorSelect">
-    <option value="">背景颜色</option>
-    <option value="#FFFFFF">白雪</option>
-    <option value="#000000">漆黑</option>
-    <option value="#FFFFED">明黄</option>
-    <option value="#EEFAEE">淡绿</option>
-    <option value="#CCE8CF">草绿</option>
-    <option value="#FCEFFF">红粉</option>
-    <option value="#EFEFEF">深灰</option>
-    <option value="#F5F5DC">米色</option>
-    <option value="#D2B48C">茶色</option>
-    <option value="#C0C0C0">银色</option>
-  </select>
-    <select id="fontSizeInput">
-    <option value="16">字体大小</option>
-    <option value="8">巨小</option>
-    <option value="12">偏小</option>
-    <option value="14">略小</option>
-    <option value="18">略大</option>
-    <option value="20">偏大</option>
-    <option value="32">巨大</option>
-  </select>
-  <select id="fontColorSelect">
-    <option value="">字体颜色</option>
-    <option value="#9370DB">暗紫</option>
-    <option value="#2E8B57">藻绿</option>
-    <option value="#2F4F4F">深灰</option>
-    <option value="#778899">青灰</option>
-    <option value="#800000">栗色</option>
-    <option value="#6A5ACD">青蓝</option>
-    <option value="#BC8F8F">玫褐</option>
-    <option value="#F4A460">黄褐</option>
-    <option value="#F5F5DC">米色</option>
-    <option value="#F5F5F5">雾白</option>
-  </select>
-  <select id="fontWeightSelect">
-    <option value="normal">默认字体</option>
-    <option value="bold">粗体</option>
-  </select>
-  <button id="applySettingsButton">应用设置</button>
-</div>
-<div class="label-input">
-  <input type="text" id="searchInput" placeholder="输入关键词，搜索文件内容或网络资源">
-  <button id="searchButton">搜索本文</button>
-  <button id="netsearchButton">网络搜书</button>
-</div>
-<div id="searchResults"></div>
-<div class="bookmark-widget">
-    <a href="https://setity.github.io" class="bookmark" target="_blank" id="bookmark1">
-        <span class="bookmark-label">晚安阅读器</span>
-    </a>
-    <a href="https://shenshenR0.github.io" class="bookmark" target="_blank" id="bookmark2">
-        <span class="bookmark-label">小广告时钟</span>
-    </a>
-    <a href="https://shuijingliuli.github.io" class="bookmark" target="_blank" id="bookmark3">
-        <span class="bookmark-label">微软薅羊毛</span>
-    </a>
-    <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark4">
-        <span class="bookmark-label">正在开发中</span>
-    </a>
-    <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark5">
-        <span class="bookmark-label">靓仔点广告</span>
-    </a>
-</div>
-<script src="scripts.js" defer></script>
+    <div class="top-bottom-buttons">
+        <a class="button" href="javascript:scrollTo(0, 0)">⬆</a>
+        <a class="button" href="javascript:window.scrollTo(0, document.body.scrollHeight)">⬇</a>
+        <a id="like" class="button" title="助力开发者购买服务器" href="https://couwhoupesho.net/4/7705695" target="_blank"></a>
+    </div>
+    <div id="scrollInfo"></div>
+    <h1 id="pageTitle">TXT阅读器</h1>
+    <a id="readme" href="./src/readme.html" target="_blank">使用说明</a>
+    <div id="fileSelection" class="label-input">
+        <label for="fileInput">选择文件：</label>
+        <input type="file" id="fileInput" accept="text/plain">
+        <button id="loadFileButton">加载文件</button>
+    </div>
+    <div id="content"></div>
+    <div id="pageButtons"></div>
+    <div id="settings">
+        <select id="backgroundColorSelect">
+            <option value="#f4f4f4">背景颜色</option>
+            <option value="#FFFFFF">白雪</option>
+            <option value="#000000">漆黑</option>
+            <option value="#FFFFED">明黄</option>
+            <option value="#EEFAEE">淡绿</option>
+            <option value="#CCE8CF">草绿</option>
+            <option value="#FCEFFF">红粉</option>
+            <option value="#EFEFEF">深灰</option>
+            <option value="#F5F5DC">米色</option>
+            <option value="#D2B48C">茶色</option>
+            <option value="#C0C0C0">银色</option>
+        </select>
+        <select id="fontSizeInput">
+            <option value="16">字体大小</option>
+            <option value="8">巨小</option>
+            <option value="12">偏小</option>
+            <option value="14">略小</option>
+            <option value="18">略大</option>
+            <option value="20">偏大</option>
+            <option value="32">巨大</option>
+        </select>
+        <select id="fontColorSelect">
+            <option value="#000000">字体颜色</option>
+            <option value="#9370DB">暗紫</option>
+            <option value="#2E8B57">藻绿</option>
+            <option value="#2F4F4F">深灰</option>
+            <option value="#778899">青灰</option>
+            <option value="#800000">栗色</option>
+            <option value="#6A5ACD">青蓝</option>
+            <option value="#BC8F8F">玫褐</option>
+            <option value="#F4A460">黄褐</option>
+            <option value="#F5F5DC">米色</option>
+            <option value="#F5F5F5">雾白</option>
+        </select>
+        <select id="fontWeightSelect">
+            <option value="normal">默认字体</option>
+            <option value="bold">粗体</option>
+            <option value="lighter">细体</option>
+        </select>
+        <button id="applySettingsButton">应用设置</button>
+    </div>
+    <div class="label-input">
+        <input type="text" id="searchInput" placeholder="输入关键词，搜索文件内容或网络资源">
+        <button id="searchButton">搜索本文</button>
+        <button id="netsearchButton">网络搜书</button>
+    </div>
+    <div id="searchResults"></div>
+    <div class="bookmark-widget">
+        <a href="https://setity.github.io" class="bookmark" target="_blank" id="bookmark1">
+            <span class="bookmark-label">晚安阅读器</span>
+        </a>
+        <a href="https://shenshenR0.github.io" class="bookmark" target="_blank" id="bookmark2">
+            <span class="bookmark-label">小广告时钟</span>
+        </a>
+        <a href="https://shuijingliuli.github.io" class="bookmark" target="_blank" id="bookmark3">
+            <span class="bookmark-label">微软薅羊毛</span>
+        </a>
+        <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark4">
+            <span class="bookmark-label">正在开发中</span>
+        </a>
+        <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark5">
+            <span class="bookmark-label">靓仔点广告</span>
+        </a>
+    </div>
 </body>
+
 </html>
