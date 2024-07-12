@@ -1,3 +1,4 @@
+/* 设置全局字体和背景颜色 */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -5,46 +6,49 @@ body {
   padding: 0;
 }
 
-.top-bottom-buttons { 
- position: fixed;
- bottom: 50%;
- right: 5px;
+/* 定位顶部和底部的按钮 */
+.top-bottom-buttons {
+  position: fixed;
+  bottom: 50%;
+  right: 5px;
+}
 
- }
+/* 定义按钮的基本样式 */
+.button {
+  display: block;
+  padding: 5px 10px;
+  background-color: #00b3b0;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  opacity: 0.6;
+  width: 15px;
+  height: 25px;
+}
 
-.button { 
- display: block;
- padding: 5px 10px;
- background-color: #4CAF50;
- color: white;
- text-align: center;
- text-decoration: none;
- border-radius: 2px;
- margin-bottom: 5px;
- font-size:16px;
- border-radius:5px;
- opacity: 0.6;
- width: 15px;
- height : 25px;
- }
-
+/* 鼠标悬停时按钮的样式变化 */
 .button:hover {
- opacity: 1;
- background-color: #45a049;
+  opacity: 1;
+  background-color: #009995;
 }
 
+/* 定义广告按钮的样式 */
 #like {
-    display: inline-block; /* 让链接元素表现为块级元素，以便设置宽高 */
-    background-image: url('../src/ad.png');
-    background-size: cover; /* 背景图片大小设置为覆盖整个元素 */
-    background-repeat: no-repeat; /* 禁止背景图片重复 */
-    text-decoration: none; /* 可选：移除下划线 */
-    color: #ffffff; /* 可选：设置链接文字颜色 */
-    width: 15px;
-    height : 25px;
-    animation: pulse 2s infinite alternate; /* 添加动画效果 */
+  display: inline-block;
+  background-image: url('../src/ad.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  color: #ffffff;
+  width: 15px;
+  height: 25px;
+  animation: pulse 2s infinite alternate;
 }
 
+/* 定义使用说明链接的样式 */
 #readme {
   display: block;
   text-decoration: none; 
@@ -53,77 +57,93 @@ body {
   margin-bottom:25px;
   margin-top:0;
   max-width: fit-content; 
+  max-width: -moz-fit-content;
   font-size: 16px; 
-  color: #6495ED; 
+  color: #49b300; 
   animation: pulse 2s infinite alternate; /* 添加动画效果 */
 }
 
+/* 使用说明动画 */
 @keyframes pulse {
   0% {
-  transform: scale(1);
+    transform: scale(1);
   }
+
   100% {
-  transform: scale(1.08);
+    transform: scale(1.08);
   }
 }
 
+/* 设置标题的样式 */
 h1 {
+  margin-top: 50px;
   text-align: center;
-  color: #333;
+  color: #00b3af;
   display: block;
 }
 
+/* 隐藏文件输入框 */
 #fileInput {
   display: none;
 }
 
+/* 定义标签和输入框容器的样式 */
 .label-input {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 10px;
-  justify-content: center; /* 让内部元素水平居中 */
+  justify-content: center;
 }
 
+/* 标签的样式 */
 .label-input label {
   margin-right: 10px;
   color: #666;
   font-weight: bold;
 }
 
-.label-input input[type="file"], .label-input input[type="text"], .label-input select {
+/* 输入框和下拉菜单的样式 */
+.label-input input[type="file"],
+.label-input input[type="text"],
+.label-input select {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+/* 文本输入框的样式 */
 .label-input input[type="text"] {
-  margin-right: 10px; /* 给搜索框和按钮之间添加间距 */
-  flex: 1; /* 确保搜索框占据可用空间 */
+  margin-right: 10px;
+  flex: 1;
 }
 
+/* 按钮的样式 */
 .label-input button {
   padding: 8px 16px;
   font-size: 14px;
-  background-color: #4CAF50;
+  background-color: #00b3b0;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  flex-shrink: 0; /* 确保按钮不压缩 */
+  flex-shrink: 0;
 }
 
+/* 设置搜索输入框的样式 */
 #searchInput {
   width: 100%;
-  background-color: #f0f0f0; /* 输入框颜色 */
+  background-color: #f0f0f0;
 }
 
+/* 设置搜索结果容器的样式 */
 #searchResults {
   margin-top: 20px;
 }
 
+/* 设置内容区域的样式 */
 #content {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -131,6 +151,7 @@ h1 {
   font-size: 16px;
 }
 
+/* 设置分页按钮的样式 */
 .pageButton {
   padding: 8px 16px;
   font-size: 14px;
@@ -143,11 +164,21 @@ h1 {
   margin-bottom: 5px;
 }
 
+/* 分页按钮鼠标悬停时的样式 */
 .pageButton:hover {
   background-color: #ccc;
 }
 
-/* 设置选项和应用设置按钮样式 */
+/* 当前页按钮的样式 */
+.currentPage {
+  background-color: #00b3b0;
+  color: white;
+}
+
+.currentPage:hover{
+  background-color: #009995;
+}
+/* 设置选项和应用设置按钮的容器样式 */
 #settings {
   margin-top: 20px;
   display: flex;
@@ -159,12 +190,17 @@ h1 {
   border-radius: 4px;
 }
 
+/* 设置选项的标签样式 */
 #settings label {
   margin-right: 10px;
   color: #666;
 }
 
-#settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+/* 设置选项的输入框和下拉菜单样式 */
+#settings select,
+#settings input[type="color"],
+#settings input[type="number"],
+#applySettingsButton {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -173,62 +209,40 @@ h1 {
   margin-right: 10px;
 }
 
+/* 应用设置按钮的样式 */
 #applySettingsButton {
-  background-color: #4CAF50;
+  background-color: #00b3b0;
   color: white;
   border: none;
   cursor: pointer;
 }
 
-.currentPage {
-  background-color: #4CAF50;
-  color: white;
-}
-
-#pageButtons {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.hidden {
-  display: none;
-}
-
-.highlight {
-  background-color: yellow;
-}
-
-#applySettingsButton {
-  padding: 8px 16px;
-  font-size: 14px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
+/* 应用设置按钮鼠标悬停时的样式 */
 #applySettingsButton:hover {
-  background-color: #45a049;
+  background-color: #009995;
 }
 
+/* 设置搜索按钮的样式 */
 #searchButton {
-  margin-right:20px;
+  margin-right: 20px;
 }
 
+/* 搜索按钮鼠标悬停时的样式 */
 #searchButton:hover {
-  background-color: #45a049;
+  background-color: #009995;
 }
 
+/* 网络搜索按钮鼠标悬停时的样式 */
 #netsearchButton:hover {
-  background-color: #45a049;
+  background-color: #009995;
 }
 
+/* 加载文件按钮鼠标悬停时的样式 */
 #loadFileButton:hover {
-  background-color: #45a049;
+  background-color: #009995;
 }
 
+/* 设置搜索结果项的样式 */
 .searchResult {
   margin-bottom: 10px;
   padding: 10px;
@@ -237,118 +251,158 @@ h1 {
   cursor: pointer;
 }
 
+/* 搜索结果项鼠标悬停时的样式 */
 .searchResult:hover {
   background-color: #f0f0f0;
 }
 
-/* 友情链接 */
+/* 定义友情链接的容器样式 */
 .bookmark-widget {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+/* 定义书签的样式 */
 .bookmark {
-    display: block;
-    width: 22px;
-    height: 46px;
-    opacity: 0.2; /* 初始透明度 */
-    transition: width 0.4s, opacity 0.4s; /* 添加 opacity 过渡 */
-    margin-bottom: 10px;
-    text-decoration: none; /* 去掉超链接下划线 */
-    overflow: hidden; /* 隐藏超链接文字 */
-    position: relative; /* 相对定位 */
-    border-top-right-radius:12px;
-    border-bottom-right-radius:12px;
+  display: block;
+  width: 22px;
+  height: 46px;
+  opacity: 0.2;
+  transition: width 0.4s, opacity 0.4s;
+  margin-bottom: 10px;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
+/* 各个书签的背景颜色 */
 #bookmark1 {
-background-color:#00b3b0;
+  background-color: #00b3b0;
 }
+
 #bookmark2 {
-background-color:#49b300;
+  background-color: #49b300;
 }
+
 #bookmark3 {
-background-color:#ffb000;
+  background-color: #ffb000;
 }
+
 #bookmark4 {
-background-color:#ff3e31;
+  background-color: #ff3e31;
 }
+
 #bookmark5 {
-background-color:#9758ff;
+  background-color: #9758ff;
 }
 
+/* 定义书签标签的样式 */
 .bookmark-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 16px;
-    opacity: 0; /* 初始不显示 */
-    transition: opacity 0.4s;
-    white-space: nowrap; /* 禁止文字换行 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  white-space: nowrap;
 }
 
+/* 书签鼠标悬停时的样式 */
 .bookmark:hover {
-    width: 100px;
-    opacity: 1; /* 悬停时完全不透明 */
+  width: 100px;
+  opacity: 1;
 }
 
+/* 书签鼠标悬停时标签的样式 */
 .bookmark:hover .bookmark-label {
-    opacity: 1; /* 悬停时显示文字 */
+  opacity: 1;
 }
 
-/* 移动设备 */
+/* 隐藏类，用于隐藏元素 */
+.hidden {
+  display: none;
+}
+
+/* 高亮类，用于突出显示文本 */
+.highlight {
+  background-color: yellow;
+}
+
+/* 移动设备的响应式设计 */
 @media (max-width: 600px) {
-  .label-input input[type="file"], .label-input input[type="text"], .label-input select, .label-input button, #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+  /* 对于移动设备，调整输入框和按钮的宽度 */
+  .label-input input[type="file"],
+  .label-input input[type="text"],
+  .label-input select,
+  .label-input button,
+  #settings label,
+  #settings select,
+  #settings input[type="color"],
+  #settings input[type="number"],
+  #applySettingsButton {
     width: 100%;
   }
 
-  .label-input input[type="text"], #searchInput {
+  /* 调整搜索输入框和设置容器的样式 */
+  .label-input input[type="text"],
+  #searchInput {
     width: 100%;
-    margin-right: 0; 
+    margin-right: 0;
     margin-bottom: 5px;
   }
 
+  /* 调整设置面板的样式 */
   #settings {
     padding: 5px;
   }
 
+  /* 调整应用设置按钮的位置 */
   #applySettingsButton {
     margin-left: 0;
   }
-  
+
+  /* 设置面板在小屏幕下的布局 */
   #settings {
     flex-direction: column;
     align-items: flex-start;
     padding: 5px;
   }
 
-  #settings label, #settings select, #settings input[type="color"], #settings input[type="number"], #applySettingsButton {
+  /* 调整设置面板内的元素样式 */
+  #settings label,
+  #settings select,
+  #settings input[type="color"],
+  #settings input[type="number"],
+  #applySettingsButton {
     width: 100%;
     margin-right: 0;
     margin-top: 6px;
   }
 
+  /* 调整应用设置按钮的位置 */
   #applySettingsButton {
     margin-top: 10px;
   }
 
+  /* 调整搜索按钮的位置 */
   #searchButton {
-    margin-right:0;
+    margin-right: 0;
   }
 
+  /* 调整网络搜索按钮的位置 */
   #netsearchButton {
-    margin-top:10px;
+    margin-top: 10px;
   }
 
-  #searchButton:hover {
-    background-color: #45a049;
-  }
-
+  /* 搜索按钮和网络搜索按钮鼠标悬停时的样式 */
+  #searchButton:hover,
   #netsearchButton:hover {
-    background-color: #45a049;
+    background-color: #009995;
   }
 }
