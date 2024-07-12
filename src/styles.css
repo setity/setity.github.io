@@ -35,7 +35,7 @@ body {
 
 #like {
     display: inline-block; /* 让链接元素表现为块级元素，以便设置宽高 */
-    background-image: url('https://github.com/setity/setitytest/assets/163283893/1d41ce7b-bea7-4855-8a51-7bb1d5b0020b');
+    background-image: url('../src/ad.png');
     background-size: cover; /* 背景图片大小设置为覆盖整个元素 */
     background-repeat: no-repeat; /* 禁止背景图片重复 */
     text-decoration: none; /* 可选：移除下划线 */
@@ -264,13 +264,13 @@ h1 {
 }
 
 #bookmark1 {
-background-color:#00ccc9;
+background-color:#00b3b0;
 }
 #bookmark2 {
-background-color:#53cc00;
+background-color:#49b300;
 }
 #bookmark3 {
-background-color:#ffba1e;
+background-color:#ffb000;
 }
 #bookmark4 {
 background-color:#ff3e31;
