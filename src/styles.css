@@ -152,6 +152,11 @@ h1 {
 }
 
 /* 设置分页按钮的样式 */
+#pageButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .pageButton {
   padding: 8px 16px;
   font-size: 14px;
