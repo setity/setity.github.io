@@ -23,7 +23,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += '&emsp;&emsp;' + paragraphsArray[i];
+        currentPageContentHTML += '&emsp;&emsp;' + paragraphsArray[i] + '<br>';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= wordsPerPage) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
@@ -40,8 +40,9 @@ document.getElementById('fileInput').addEventListener('change', function() {
       document.getElementById('fileSelection').style.display = 'none';
       document.getElementById('pageTitle').style.display = 'none';
       document.getElementById('readme').style.display = 'none';
-      // 显示记录的页码或第一页
-      const savedPage = localStorage.getItem('currentPage');
+      // 获取文件名，并使用文件名作为键来存储页码
+      const fileName = file.name;
+      const savedPage = localStorage.getItem(fileName + '_currentPage');
       if (savedPage) {
         showPage(parseInt(savedPage));
       } else {
@@ -68,8 +69,12 @@ function showPage(pageNumber) {
   for (let i = 0; i < pageButtons.length; i++) {
     pageButtons[i].classList.remove('currentPage');
   }
-  // 更新本地存储的页码
-  localStorage.setItem('currentPage', pageNumber);
+  // 获取当前文件名，并使用文件名作为键来存储页码
+  const fileInput = document.getElementById('fileInput');
+  if (fileInput.files.length > 0) {
+    const fileName = fileInput.files[0].name;
+    localStorage.setItem(fileName + '_currentPage', pageNumber);
+  }
   // 更新页码显示
   updatePageButtons(pageNumber);
   // 定位到页面最上方
@@ -86,6 +91,7 @@ function showPage(pageNumber) {
   // 隐藏搜索结果
   document.getElementById('searchResults').innerHTML = '';
 }
+
 
 function updatePageButtons(currentPage) {
   const pageButtonsDiv = document.getElementById('pageButtons');
@@ -233,7 +239,6 @@ function initializeSettings() {
       lineHeight: '1'
   };
 
-/* 页面设置 */
   const settings = {
       backgroundColor: localStorage.getItem('backgroundColor') || defaultSettings.backgroundColor,
       fontSize: localStorage.getItem('fontSize') || defaultSettings.fontSize,
