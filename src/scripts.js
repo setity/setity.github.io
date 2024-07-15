@@ -224,20 +224,87 @@ document.getElementById("netsearchButton").addEventListener("click", function() 
     window.open(searchUrl, "_blank");
 });
 
-document.getElementById('applySettingsButton').addEventListener('click', function() {
-  const backgroundColor = document.getElementById('backgroundColorSelect').value;
-  const fontSize = document.getElementById('fontSizeInput').value + 'px';
-  const fontColor = document.getElementById('fontColorSelect').value;
-  const fontWeight = document.getElementById('fontWeightSelect').value;
+function initializeSettings() {
+  const defaultSettings = {
+      backgroundColor: '#f4f4f4',
+      fontSize: '16px',
+      fontColor: '#000000',
+      fontWeight: 'normal',
+      lineHeight: '1'
+  };
 
-  document.body.style.backgroundColor = backgroundColor;
-  document.body.style.fontSize = fontSize;
+/* 页面设置 */
+  const settings = {
+      backgroundColor: localStorage.getItem('backgroundColor') || defaultSettings.backgroundColor,
+      fontSize: localStorage.getItem('fontSize') || defaultSettings.fontSize,
+      fontColor: localStorage.getItem('fontColor') || defaultSettings.fontColor,
+      fontWeight: localStorage.getItem('fontWeight') || defaultSettings.fontWeight,
+      lineHeight: localStorage.getItem('lineHeight') || defaultSettings.lineHeight
+  };
 
+  document.body.style.backgroundColor = settings.backgroundColor;
+  document.getElementById('backgroundColorSelect').value = settings.backgroundColor;
+  document.getElementById('fontSizeInput').value = settings.fontSize.replace('px', '');
+  document.getElementById('fontColorSelect').value = settings.fontColor;
+  document.getElementById('fontWeightSelect').value = settings.fontWeight;
+  document.getElementById('lineHeightInput').value = settings.lineHeight;
+
+  updatePagesStyles(settings);
+}
+
+function updatePagesStyles(settings) {
   const pages = document.getElementsByClassName('page');
-  for (let i = 0; i < pages.length; i++) {
-    pages[i].style.backgroundColor = backgroundColor;
-    pages[i].style.fontSize = fontSize;
-    pages[i].style.color = fontColor;
-    pages[i].style.fontWeight = fontWeight;
-  }
+  const allTextElements = document.querySelectorAll('.page, .page *');
+  requestAnimationFrame(() => {
+      for (let i = 0; i < pages.length; i++) {
+          pages[i].style.backgroundColor = settings.backgroundColor;
+          pages[i].style.fontSize = settings.fontSize;
+          pages[i].style.color = settings.fontColor;
+          pages[i].style.fontWeight = settings.fontWeight;
+      }
+      for (let i = 0; i < allTextElements.length; i++) {
+          allTextElements[i].style.lineHeight = settings.lineHeight;
+      }
+  });
+}
+
+function updateSetting(key, value) {
+  localStorage.setItem(key, value);
+  const settings = {
+      backgroundColor: localStorage.getItem('backgroundColor'),
+      fontSize: localStorage.getItem('fontSize'),
+      fontColor: localStorage.getItem('fontColor'),
+      fontWeight: localStorage.getItem('fontWeight'),
+      lineHeight: localStorage.getItem('lineHeight')
+  };
+  updatePagesStyles(settings);
+}
+
+// 页面加载时初始化设置
+window.addEventListener('DOMContentLoaded', initializeSettings);
+
+document.getElementById('backgroundColorSelect').addEventListener('change', function() {
+  const newColor = this.value;
+  document.body.style.backgroundColor = newColor;
+  updateSetting('backgroundColor', newColor);
+});
+
+document.getElementById('fontSizeInput').addEventListener('change', function() {
+  const newSize = this.value + 'px';
+  updateSetting('fontSize', newSize);
+});
+
+document.getElementById('fontColorSelect').addEventListener('change', function() {
+  const newColor = this.value;
+  updateSetting('fontColor', newColor);
+});
+
+document.getElementById('fontWeightSelect').addEventListener('change', function() {
+  const newWeight = this.value;
+  updateSetting('fontWeight', newWeight);
+});
+
+document.getElementById('lineHeightInput').addEventListener('change', function() {
+  const newHeight = this.value;
+  updateSetting('lineHeight', newHeight);
 });
