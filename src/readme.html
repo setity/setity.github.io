@@ -23,63 +23,6 @@
         a:hover {
             text-decoration: underline;
         }
-.bookmark-widget {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.bookmark {
-    display: block;
-    width: 22px;
-    height: 46px;
-    opacity: 0.2; /* 初始透明度 */
-    transition: width 0.4s, opacity 0.4s; /* 添加 opacity 过渡 */
-    margin-bottom: 10px;
-    text-decoration: none; /* 去掉超链接下划线 */
-    overflow: hidden; /* 隐藏超链接文字 */
-    position: relative; /* 相对定位 */
-    border-top-right-radius:12px;
-    border-bottom-right-radius:12px;
-}
-
-#bookmark1 {
-background-color:#00ccc9;
-}
-#bookmark2 {
-background-color:#53cc00;
-}
-#bookmark3 {
-background-color:#ffba1e;
-}
-#bookmark4 {
-background-color:#ff3e31;
-}
-#bookmark5 {
-background-color:#9758ff;
-}
-
-.bookmark-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 16px;
-    opacity: 0; /* 初始不显示 */
-    transition: opacity 0.4s;
-    white-space: nowrap; /* 禁止文字换行 */
-}
-
-.bookmark:hover {
-    width: 100px;
-    opacity: 1; /* 悬停时完全不透明 */
-}
-
-.bookmark:hover .bookmark-label {
-    opacity: 1; /* 悬停时显示文字 */
-}
     </style>
 </head>
 <body>
@@ -99,23 +42,7 @@ background-color:#9758ff;
     <a id="like" class="button" title="助力开发者购买服务器" href="https://couwhoupesho.net/4/7705695" target="_black">1.点此免费助力开发者</a>
     <br><br>
     2.扫码付费助力开发者：<br>
-   <img border="0" src="https://github.com/setity/setity.github.io/assets/163283893/c00195cf-1990-400c-bd5f-dc19848f0b97" alt="感谢金主大人" width="290" height="298">
-   <div class="bookmark-widget">
-    <a href="https://setity.github.io" class="bookmark" target="_blank" id="bookmark1">
-        <span class="bookmark-label">晚安阅读器</span>
-    </a>
-    <a href="https://shenshenR0.github.io" class="bookmark" target="_blank" id="bookmark2">
-        <span class="bookmark-label">小广告时钟</span>
-    </a>
-    <a href="https://shuijingliuli.github.io" class="bookmark" target="_blank" id="bookmark3">
-        <span class="bookmark-label">微软薅羊毛</span>
-    </a>
-    <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark4">
-        <span class="bookmark-label">正在开发中</span>
-    </a>
-    <a href="https://couwhoupesho.net/4/7705695" class="bookmark" target="_blank" id="bookmark5">
-        <span class="bookmark-label">靓仔点广告</span>
-    </a>
-</div>
+    <img border="0" src="https://github.com/setity/setity.github.io/assets/163283893/c00195cf-1990-400c-bd5f-dc19848f0b97" alt="感谢金主大人" width="290" height="298">
+    <script src="../src/links.js" defer></script>
 </body>
 </html>
