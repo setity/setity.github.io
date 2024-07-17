@@ -23,7 +23,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += '<p>' + paragraphsArray[i] + '</p>';
+        currentPageContentHTML += '&emsp;&emsp;<p>' + paragraphsArray[i] + '</p>';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= wordsPerPage) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
