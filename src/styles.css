@@ -6,6 +6,11 @@ body {
   padding: 0;
 }
 
+/* 设置段落标签的初始样式 */
+p{
+  margin:10px 0px; 
+}
+
 /* 定位顶部和底部的按钮 */
 .top-bottom-buttons {
   position: fixed;

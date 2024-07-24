@@ -1,14 +1,14 @@
 let textContent = '';
 
-document.getElementById('loadFileButton').addEventListener('click', function() {
+document.getElementById('loadFileButton').addEventListener('click', function () {
   document.getElementById('fileInput').click();
 });
 
-document.getElementById('fileInput').addEventListener('change', function() {
+document.getElementById('fileInput').addEventListener('change', function () {
   const file = this.files[0];
   if (file) {
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       textContent = e.target.result;
       // 清空内容和分页按钮
       document.getElementById('content').innerHTML = '';
@@ -23,7 +23,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
       let currentPageContentHTML = '';
       let currentPageNumber = 1;
       for (let i = 0; i < paragraphsArray.length; i++) {
-        currentPageContentHTML += '<p style="margin:10px 0px; ">' + paragraphsArray[i] + '</p>';
+        currentPageContentHTML += '<p>' + paragraphsArray[i] + '</p>';
         currentPageLength += paragraphsArray[i].length;
         if (currentPageLength >= wordsPerPage) {
           pagesHTML += '<div class="page" id="page' + currentPageNumber + '">' + currentPageContentHTML + '</div>';
@@ -85,7 +85,7 @@ function showPage(pageNumber) {
   scrollInfo.style.color = 'red'; // 设置颜色为红色
   scrollInfo.style.fontWeight = 'bold'; // 加粗显示
   // 设置定时器，在4秒后隐藏提示信息
-  setTimeout(function() {
+  setTimeout(function () {
     scrollInfo.textContent = '';
   }, 4000);
   // 隐藏搜索结果
@@ -105,7 +105,7 @@ function updatePageButtons(currentPage) {
     const prevButton = document.createElement('span');
     prevButton.classList.add('pageButton');
     prevButton.innerText = '上一页';
-    prevButton.addEventListener('click', function() {
+    prevButton.addEventListener('click', function () {
       showPage(currentPage - 1);
     });
     pageButtonsDiv.appendChild(prevButton);
@@ -126,7 +126,7 @@ function updatePageButtons(currentPage) {
     const firstPageButton = document.createElement('span');
     firstPageButton.classList.add('pageButton');
     firstPageButton.innerText = '1';
-    firstPageButton.addEventListener('click', function() {
+    firstPageButton.addEventListener('click', function () {
       showPage(1);
     });
     pageButtonsDiv.appendChild(firstPageButton);
@@ -143,7 +143,7 @@ function updatePageButtons(currentPage) {
     if (i === currentPage) {
       pageButton.classList.add('currentPage');
     }
-    pageButton.addEventListener('click', function() {
+    pageButton.addEventListener('click', function () {
       showPage(i);
     });
     pageButtonsDiv.appendChild(pageButton);
@@ -157,7 +157,7 @@ function updatePageButtons(currentPage) {
     const lastPageButton = document.createElement('span');
     lastPageButton.classList.add('pageButton');
     lastPageButton.innerText = totalPages;
-    lastPageButton.addEventListener('click', function() {
+    lastPageButton.addEventListener('click', function () {
       showPage(totalPages);
     });
     pageButtonsDiv.appendChild(lastPageButton);
@@ -168,7 +168,7 @@ function updatePageButtons(currentPage) {
     const nextButton = document.createElement('span');
     nextButton.classList.add('pageButton');
     nextButton.innerText = '下一页';
-    nextButton.addEventListener('click', function() {
+    nextButton.addEventListener('click', function () {
       showPage(currentPage + 1);
     });
     pageButtonsDiv.appendChild(nextButton);
@@ -176,7 +176,7 @@ function updatePageButtons(currentPage) {
 }
 
 // 搜索文章内容
-document.getElementById('searchButton').addEventListener('click', function() {
+document.getElementById('searchButton').addEventListener('click', function () {
   const searchTerm = document.getElementById('searchInput').value.trim();
   if (searchTerm === '') {
     return;
@@ -197,7 +197,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
       const resultDiv = document.createElement('div');
       resultDiv.innerHTML = `${contextBefore}<span class="highlight">${contextHighlighted}</span>${contextAfter}`;
       resultDiv.classList.add('searchResult');
-      resultDiv.addEventListener('click', function() {
+      resultDiv.addEventListener('click', function () {
         showPage(i + 1);
         searchResultsDiv.innerHTML = '';
       });
@@ -205,8 +205,8 @@ document.getElementById('searchButton').addEventListener('click', function() {
       searchCount++;
       // 每次搜索后向下翻动一页
       window.scrollBy({
-      top: 600,
-      behavior: "smooth",
+        top: 600,
+        behavior: "smooth",
       });
     }
   }
@@ -220,31 +220,31 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 // 网络搜书
-document.getElementById("netsearchButton").addEventListener("click", function() {
-    var keyword = document.getElementById("searchInput").value;
-    if (keyword.trim() === "") {
+document.getElementById("netsearchButton").addEventListener("click", function () {
+  var keyword = document.getElementById("searchInput").value;
+  if (keyword.trim() === "") {
     alert("请输入搜索关键词！");
     return;
-    }
-    var searchUrl = "https://www.bing.com/search?q=" + encodeURIComponent(keyword + "txt下载");
-    window.open(searchUrl, "_blank");
+  }
+  var searchUrl = "https://www.bing.com/search?q=" + encodeURIComponent(keyword + "txt下载");
+  window.open(searchUrl, "_blank");
 });
 
 function initializeSettings() {
   const defaultSettings = {
-      backgroundColor: '#f4f4f4',
-      fontSize: '16px',
-      fontColor: '#000000',
-      fontWeight: 'normal',
-      lineHeight: '1'
+    backgroundColor: '#f4f4f4',
+    fontSize: '16px',
+    fontColor: '#000000',
+    fontWeight: 'normal',
+    lineHeight: '1'
   };
 
   const settings = {
-      backgroundColor: localStorage.getItem('backgroundColor') || defaultSettings.backgroundColor,
-      fontSize: localStorage.getItem('fontSize') || defaultSettings.fontSize,
-      fontColor: localStorage.getItem('fontColor') || defaultSettings.fontColor,
-      fontWeight: localStorage.getItem('fontWeight') || defaultSettings.fontWeight,
-      lineHeight: localStorage.getItem('lineHeight') || defaultSettings.lineHeight
+    backgroundColor: localStorage.getItem('backgroundColor') || defaultSettings.backgroundColor,
+    fontSize: localStorage.getItem('fontSize') || defaultSettings.fontSize,
+    fontColor: localStorage.getItem('fontColor') || defaultSettings.fontColor,
+    fontWeight: localStorage.getItem('fontWeight') || defaultSettings.fontWeight,
+    lineHeight: localStorage.getItem('lineHeight') || defaultSettings.lineHeight
   };
 
   document.body.style.backgroundColor = settings.backgroundColor;
@@ -258,29 +258,30 @@ function initializeSettings() {
 }
 
 function updatePagesStyles(settings) {
-  const pages = document.getElementsByClassName('page');
-  const allTextElements = document.querySelectorAll('.page, .page *');
-  requestAnimationFrame(() => {
-      for (let i = 0; i < pages.length; i++) {
-          pages[i].style.backgroundColor = settings.backgroundColor;
-          pages[i].style.fontSize = settings.fontSize;
-          pages[i].style.color = settings.fontColor;
-          pages[i].style.fontWeight = settings.fontWeight;
-      }
-      for (let i = 0; i < allTextElements.length; i++) {
-          allTextElements[i].style.lineHeight = settings.lineHeight;
-      }
-  });
+    var style = document.createElement('style');
+    style.innerHTML = `
+  .page {
+         display: none; 
+         font-size: ${settings.fontSize};
+          font-weight: ${settings.fontWeight};
+         color: ${settings.fontColor};
+         background-color: ${settings.backgroundColor};
+        }
+  p {
+    line-height: ${settings.lineHeight};
+    }
+  `;
+    document.head.appendChild(style);
 }
 
 function updateSetting(key, value) {
   localStorage.setItem(key, value);
   const settings = {
-      backgroundColor: localStorage.getItem('backgroundColor'),
-      fontSize: localStorage.getItem('fontSize'),
-      fontColor: localStorage.getItem('fontColor'),
-      fontWeight: localStorage.getItem('fontWeight'),
-      lineHeight: localStorage.getItem('lineHeight')
+    backgroundColor: localStorage.getItem('backgroundColor'),
+    fontSize: localStorage.getItem('fontSize'),
+    fontColor: localStorage.getItem('fontColor'),
+    fontWeight: localStorage.getItem('fontWeight'),
+    lineHeight: localStorage.getItem('lineHeight')
   };
   updatePagesStyles(settings);
 }
@@ -288,28 +289,28 @@ function updateSetting(key, value) {
 // 页面加载时初始化设置
 window.addEventListener('DOMContentLoaded', initializeSettings);
 
-document.getElementById('backgroundColorSelect').addEventListener('change', function() {
+document.getElementById('backgroundColorSelect').addEventListener('change', function () {
   const newColor = this.value;
   document.body.style.backgroundColor = newColor;
   updateSetting('backgroundColor', newColor);
 });
 
-document.getElementById('fontSizeInput').addEventListener('change', function() {
+document.getElementById('fontSizeInput').addEventListener('change', function () {
   const newSize = this.value + 'px';
   updateSetting('fontSize', newSize);
 });
 
-document.getElementById('fontColorSelect').addEventListener('change', function() {
+document.getElementById('fontColorSelect').addEventListener('change', function () {
   const newColor = this.value;
   updateSetting('fontColor', newColor);
 });
 
-document.getElementById('fontWeightSelect').addEventListener('change', function() {
+document.getElementById('fontWeightSelect').addEventListener('change', function () {
   const newWeight = this.value;
   updateSetting('fontWeight', newWeight);
 });
 
-document.getElementById('lineHeightInput').addEventListener('change', function() {
+document.getElementById('lineHeightInput').addEventListener('change', function () {
   const newHeight = this.value;
   updateSetting('lineHeight', newHeight);
 });
