@@ -31,4 +31,4 @@
 [1.点此看广告免费助力开发者](https://couwhoupesho.net/4/7705695 "助力开发者购买服务器")
 
 2.扫码付费助力开发者：  
-![感谢金主大人](https://gitlab.com/lingtu/lingtu.gitlab.io/-/raw/main/like.jpg)
+[感谢金主大人](https://gitlab.com/lingtu/lingtu.gitlab.io/-/raw/main/like.jpg)
