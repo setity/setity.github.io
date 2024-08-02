@@ -13,7 +13,20 @@
     <meta name="google-adsense-account" content="ca-pub-3476033689989728">
     <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3476033689989728"
         crossorigin="anonymous"></script>
-    <script>(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('loajawun.com', 7705622, document.createElement('script'))</script>
+    <!-- 动态ads -->  
+    <script>
+        function insertScriptByUserAgent() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            var isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(userAgent);
+            if (!isMobile) {
+                var scriptCode = '(function (d, z, s) { s.src = "https://" + d + "/400/" + z; try { (document.body || document.documentElement).appendChild(s); } catch (e) { } })(\'loajawun.com\', 7705622, document.createElement(\'script\'));';
+                var scriptElement = document.createElement('script');
+                scriptElement.textContent = scriptCode;
+                document.head.appendChild(scriptElement);
+            }
+        }
+        window.onload = insertScriptByUserAgent;
+    </script>
     <!-- Google tag (gtag.js) -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-59MW71YVS1"></script>
     <script defer>
